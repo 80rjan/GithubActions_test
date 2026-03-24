@@ -2,8 +2,8 @@ pipeline {
     agent any
 
     environment {
-        IMAGE_NAME = "my-nginx"                  // Name of your Docker image
-        REGISTRY = "docker.io/your-dockerhub-username" // Docker Hub username
+        IMAGE_NAME = "my-nginx"                       // Name of your Docker image
+        REGISTRY = "docker.io/80rjan"                 // Docker Hub username
         REGISTRY_CREDENTIALS = "dockerhub-creds"      // Jenkins credentials ID
     }
 
@@ -35,14 +35,6 @@ pipeline {
                     }
                 }
             }
-        }
-    }
-
-    post {
-        always {
-            // Optional: clean up local images
-            sh "docker rmi ${IMAGE_NAME} || true"
-            sh "docker rmi ${REGISTRY}/${IMAGE_NAME}:latest || true"
         }
     }
 }
